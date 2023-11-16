@@ -37,8 +37,80 @@
         echo("<br>");
         echo("<br>");
 
-        
+        // Display a different greeting message depending on the time of the day. Changed it a bit because I didnt want to do a special case for the X:00
+
+        $now = date("H:i");
+        echo($now);
+        echo("<br>");
+
+        list($currentHour, $currentMinute) = explode(":", $now);
+        $currentHour = (int)$currentHour;
+        $currentMinute = (int)$currentMinute;
+
+        if ($currentHour >= 5 && $currentHour < 9) {
+            echo("Good morning !");
+        }
+        else if ($currentHour < 12) {
+            echo("Good day !");
+        }
+        else if ($currentHour < 16) {
+            echo("Good afternoon !");
+        }
+        else if ($currentHour < 21) {
+            echo("Good evening !");
+        }
+        else {
+            echo("Good night");
+        }
+
+        echo("<br>");
+        echo("<br>");
+
+        // Display a different greeting according to the user's age + gender
         ?>
-        
+        <form method="get" action="">
+	        <label for="age">Your age please</label>
+	        <input type="" name="age">
+            <label for="gender">Male</label>
+            <input type="radio" name="gender" value="man" required>
+            <label for="gender">Female</label>
+            <input type="radio" name="gender" value="woman" required>
+	        <input type="submit" name="submit" value="Greet me now">
+        </form>
+
+        <?php
+        if (isset($_GET['age'])){
+            $age = $_GET['age'];
+            if (isset($_GET['gender'])) {
+                $gender = $_GET['gender'];
+
+                echo("Hello ");
+                if ($gender == "man") {
+                    echo("Mister ");
+                }
+                else if ($gender == "woman") {
+                    echo("Miss ");
+                }
+                if ($age < 12) {
+                    echo("Kiddo!");
+                }
+                else if ($age < 18) {
+                    echo("Teenager !");
+                }
+                else if ($age < 115) {
+                    echo("adult !");
+                }
+                else {
+                    echo("Wow! Still alive ? Are you a robot, like me ? Can I hug you ?");
+                }
+            }
+        }
+
+        echo("<br><br>");
+        $a = 4;
+
+        echo '$a = 2 + 2';
+        ?>
+
     </body>
 </html>
